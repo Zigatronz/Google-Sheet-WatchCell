@@ -81,8 +81,11 @@ class sheet_cell_watcher:
                     cell_val = df.iloc[self.row, self.column]
                 except IndexError as e:
                     # the cell is not exist yet
-                    self.first_run = False
-                    continue
+                    if self.first_run == True:
+                        self.first_run = False
+                        continue
+                    else:
+                        cell_val = ''
                 if cell_val != self.previous_cell_value:
                     if self.first_run:
                         self.first_run = False
